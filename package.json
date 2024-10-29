@@ -15,11 +15,15 @@
     "@angular/compiler": "^17.0.0",
     "@angular/core": "^17.0.0",
     "@angular/forms": "^17.0.0",
+    "@angular/material": "^16.2.14",
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
+    "bootstrap": "^5.3.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "typed-js": "^0.2.3",
+    "typed.js": "^2.1.0",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
