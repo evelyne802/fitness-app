@@ -175,7 +175,11 @@ p {
     }
 }
 
-@media screen and (max-width: 400px){
+@media screen and (max-width: 450px){
+    .content-wrapper {
+        height: 90vh;
+    }
+
     .logo {
         font-size: 4rem;
     }
