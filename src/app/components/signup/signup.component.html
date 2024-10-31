@@ -26,19 +26,19 @@
             <div class="level-selection">
                 <div class="level-title">Choose your level</div>
                 <div class="level">
-                    <div class="circle">
+                    <div #novice class="circle" (click)="selectNovice()">
                         <img src="../../../assets/images/novice.png">
                     </div>
                     <label>Novice</label>
                 </div>
                 <div class="level">
-                    <div class="circle">
+                    <div #intermediate class="circle" (click)="selectIntermediate()">
                         <img src="../../../assets/images/intermediate.png">
                     </div>
                     <label>Intermediate</label>
                 </div>
                 <div class="level">
-                    <div class="circle">
+                    <div #expert class="circle" (click)="selectExpert()">
                         <img src="../../../assets/images/expert.png">
                     </div>
                     <label>Expert</label>

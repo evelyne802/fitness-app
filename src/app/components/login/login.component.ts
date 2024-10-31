@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select'; 
 import { MatInputModule } from '@angular/material/input';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   FormControl,
   FormsModule,
@@ -18,7 +17,6 @@ import Typed from 'typed.js';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    // BrowserAnimationsModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
