@@ -5,13 +5,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   FormControl,
   FormsModule,
+  Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import Typed from 'typed.js';
-
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-signup',
   standalone: true,
   imports: [
     MatSelectModule,
@@ -20,23 +19,14 @@ import Typed from 'typed.js';
     ReactiveFormsModule,
     // BrowserAnimationsModule
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './signup.component.html',
+  styleUrl: './signup.component.css'
 })
+export class SignupComponent {
 
-export class LoginComponent {
-
-  emailFormControl = new FormControl('');
+  firstNameFormControl = new FormControl('');
+  lastNameFormControl = new FormControl('');
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('');
 
-  ngOnInit(){
-    const firstTyped = new Typed('#typed', {
-      strings: ['Your Favorite Fitness App.', 'Your Best Fitness App.'],
-      typeSpeed: 80,
-      backDelay: 1000,
-      backSpeed:0,
-      loop: false,
-      cursorChar: ''
-    });
-  }
 }

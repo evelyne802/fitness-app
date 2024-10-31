@@ -88,6 +88,11 @@ button {
     color: rgb(53 52 52);
     background-color: #deccbd;
     border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #c3b2a5;
 }
 
 label {
@@ -109,8 +114,12 @@ p {
 .sign-up-link {
     text-decoration: underline;
     color: #deccbd;
+    cursor: pointer;
 }
 
+.sign-up-link:hover {
+    color: #c3b2a5;
+}
 
 ::ng-deep .mdc-text-field {
     padding: 5px !important;

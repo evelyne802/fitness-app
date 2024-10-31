@@ -1,0 +1,243 @@
+.background {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-size: cover;
+    background-position: 30% 70%;
+    left: 0;
+    top: 0;
+}
+
+.background::before {    
+    content: "";
+    background-image: url("../../../assets/images/signup-bg.png");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.7;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+.logo {
+    position: relative;
+    font-family: "Montserrat", sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: black;
+    margin: 25px 30px;
+}
+
+.signup-container {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    background-color: #383838cc;
+    width: 800px;
+    height: 400px;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: #cecece;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    width: 40%;
+    padding: 20px;
+}
+
+.level-selection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #cecece;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    width: 60%;
+    height: 175px;
+    margin-top: -50px;
+}
+
+.level-title {
+    position: relative;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin: 25px 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.level {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #313131;
+    border-radius: 50%;
+    height: 85px;
+    width: 85px;
+    margin: 0 15px;
+}
+
+.circle:hover {
+    cursor: pointer;
+    background-color: #272727;
+}
+
+.level img {
+    height: 50px;
+    border-radius: 50%;
+}
+
+.level label {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;  
+    margin-top: 5px;  
+}
+
+button {
+    width: 70%;
+    border-radius: 15px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9rem;
+    padding: 5px 0;
+    font-weight: 500;
+    color: rgb(53 52 52);
+    background-color: #deccbd;
+    border: none;
+    cursor: pointer;
+    align-self: center;
+}
+
+button:hover {
+    background-color: #c3b2a5;
+}
+
+::ng-deep .mdc-text-field {
+    padding: 5px !important;
+}
+
+::ng-deep .mdc-text-field--filled .mdc-floating-label {
+    font-family: "Montserrat", sans-serif !important;
+}
+
+
+@media screen and (max-width: 900px) {
+
+    .content-wrapper {
+        height: 80vh;
+    }
+
+    .logo {
+        margin: 20px 30px;
+    }
+
+    .signup-container {
+        width: 450px;
+        height: max-content;
+        flex-direction: column;
+        padding: 30px;
+    }
+
+    .form {
+        width: 90%
+    }
+
+    .level-selection {
+        width:100%;
+        margin-top: -35px;
+    }
+
+    button {
+        margin-top: 60px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .signup-container {
+        width: 75vw;
+    }
+
+    .level-title {
+        font-size: 1.5rem;
+        margin: 25px 30px 15px 30px;
+    }
+
+    .circle {
+        height: 75px;
+        width: 75px;
+    }
+
+    button {
+        margin-top: 45px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    
+    .content-wrapper {
+        justify-content: center;
+    }
+
+    .signup-container {
+        width: 80vw;
+        padding: 15px;
+    }
+
+    .level-title {
+        font-size: 1.4rem;
+        margin: 25px 15px 15px 15px;
+    }
+
+    .circle {
+        height: 65px;
+        width: 65px;
+        margin: 0 10px;
+    }
+
+    .level img{
+        height: 40px;
+    }
+
+    .level label {
+        font-size: 0.8rem;
+    }
+
+    button {
+        width: 80%;
+        margin: 20px 0;
+    }
+}
+
+@media screen and (max-width: 400px) { 
+    /* .circle {
+        height: 50px;
+        width: 50px;
+        margin: 0 5px;
+    } */
+}
+

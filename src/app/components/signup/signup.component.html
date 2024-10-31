@@ -1,0 +1,50 @@
+<div class="background">
+    <div class="logo">GYMPAL</div>
+    <div class="content-wrapper container">
+        <div class="signup-container">
+            <div class="form">
+                <mat-form-field>
+                    <mat-label>First Name</mat-label>
+                    <input matInput [formControl]="firstNameFormControl">
+                </mat-form-field>
+            
+                 <mat-form-field>
+                    <mat-label>Last Name</mat-label>
+                    <input matInput [formControl]="lastNameFormControl">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput [formControl]="emailFormControl">
+                </mat-form-field>
+            
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput [formControl]="passwordFormControl">
+                </mat-form-field>
+            </div>
+            <div class="level-selection">
+                <div class="level-title">Choose your level</div>
+                <div class="level">
+                    <div class="circle">
+                        <img src="../../../assets/images/novice.png">
+                    </div>
+                    <label>Novice</label>
+                </div>
+                <div class="level">
+                    <div class="circle">
+                        <img src="../../../assets/images/intermediate.png">
+                    </div>
+                    <label>Intermediate</label>
+                </div>
+                <div class="level">
+                    <div class="circle">
+                        <img src="../../../assets/images/expert.png">
+                    </div>
+                    <label>Expert</label>
+                </div>
+            </div>
+            <button>Get Started</button>
+        </div>
+    </div>
+</div>
