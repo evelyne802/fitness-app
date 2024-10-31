@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import Typed from 'typed.js';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 
 @Component({
@@ -17,6 +18,8 @@ import Typed from 'typed.js';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterLink,
+    RouterLinkActive
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
