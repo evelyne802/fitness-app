@@ -1,0 +1,24 @@
+<div class="background">
+    <div class="logo">GYMPAL</div>
+    <div class="content-wrapper container">
+        <div class="confirm-container">
+            <label>Confirm your email address</label>
+            <p>
+                We sent a confirmation email to <br>
+                email&#64;email.com <br>
+                check your email and enter the code below to continue
+            </p>
+            <div class="input-field">
+                <mat-form-field>
+                    <input matInput [formControl]="codeFormControl">
+                </mat-form-field>
+            </div>
+            <div class="send-code">
+                <a [class]="sendCodeClass" (click)="startTimer()">Send me another code</a><br>
+                <span *ngIf="timeLeft > 9">Available in 00:{{ timeLeft }}</span>
+                <span *ngIf="10 > timeLeft">Available in 00:0{{ timeLeft }}</span>
+            </div>
+            <button>Continue</button>
+        </div>
+    </div>
+</div>

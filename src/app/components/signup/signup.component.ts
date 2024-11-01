@@ -7,6 +7,8 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+
 
 @Component({
   selector: 'app-signup',
@@ -16,6 +18,8 @@ import {
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterLink,
+    RouterLinkActive
   ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'

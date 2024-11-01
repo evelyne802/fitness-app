@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select'; 
 import { MatInputModule } from '@angular/material/input';
-import {
-  FormControl,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import Typed from 'typed.js';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 

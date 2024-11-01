@@ -1,0 +1,103 @@
+.background {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-size: cover;
+    background-position: 0% 100%;
+    left: 0;
+    top: 0;
+}
+
+.background::before {    
+    content: "";
+    background-image: url("../../../assets/images/confirmation-bg.png");
+    background-size: cover;
+    background-position: 25% 75%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.7;
+}
+
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+}
+
+.logo {
+    position: relative;
+    font-family: "Montserrat", sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: black;
+    margin: 25px 30px;
+}
+
+.confirm-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #383838cc;
+    width: 450px;
+    height: 415px;
+    align-items: center;
+    color: #b9b9b9;
+    padding: 45px;
+}
+
+.confirm-container label {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+.confirm-container p {
+    width: 75%;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.send-code{
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #a1a1a1;
+}
+
+.unavailable {
+    color: #747474;
+    text-decoration: none;
+    cursor: not-allowed;
+}
+
+.available{
+    color: #d2d2d2;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.available:hover{
+    cursor: pointer;
+    color: #b9b9b9;;
+}
+
+button {
+    width: 80%;
+    border-radius: 15px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9rem;
+    padding: 5px 0;
+    font-weight: 500;
+    color: rgb(53 52 52);
+    background-color: #deccbd;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #c3b2a5;
+}
