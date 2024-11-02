@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 60vh;
+    height: 70vh;
 }
 
 .logo {
@@ -38,12 +38,13 @@
 }
 
 .confirm-container {
+    font-family: "Montserrat", sans-serif;
     display: flex;
     flex-direction: column;
     position: relative;
     background-color: #383838cc;
-    width: 450px;
-    height: 415px;
+    width: 455px;
+    height: 425px;
     align-items: center;
     color: #b9b9b9;
     padding: 45px;
@@ -51,12 +52,12 @@
 
 .confirm-container label {
     font-size: 1.6rem;
-    font-weight: 500;
+    font-weight: 600;
     margin: 10px 0;
 }
 
 .confirm-container p {
-    width: 75%;
+    width: 80%;
     text-align: center;
     font-size: 1.1rem;
 }
@@ -70,6 +71,7 @@
 
 .unavailable {
     color: #747474;
+    font-weight: 600;
     text-decoration: none;
     cursor: not-allowed;
 }
@@ -96,8 +98,13 @@ button {
     background-color: #deccbd;
     border: none;
     cursor: pointer;
+    margin: 5px 0;
 }
 
 button:hover {
     background-color: #c3b2a5;
+}
+
+.input-field {
+    text-align: center;
 }

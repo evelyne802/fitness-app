@@ -8,6 +8,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { UserDetailsService } from '../../services/user-details.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class SignupComponent {
 
-  constructor(private renderer: Renderer2) {}
+  constructor( private renderer: Renderer2, private UserDetailsService: UserDetailsService ) {}
 
   firstNameFormControl = new FormControl('');
   lastNameFormControl = new FormControl('');
@@ -58,4 +59,25 @@ export class SignupComponent {
     this.renderer.removeClass(this.intermediateButton.nativeElement, 'active-circle');
   }
 
+  updateUserDetails(){
+    let firstName = this.firstNameFormControl.value == null ? '' : this.firstNameFormControl.value;
+    let lastName = this.lastNameFormControl.value == null ? '' : this.lastNameFormControl.value;
+    let email = this.emailFormControl.value == null ? '' : this.emailFormControl.value;
+    let password = this.passwordFormControl.value == null ? '' : this.passwordFormControl.value;
+
+    this.UserDetailsService.setUserDetails({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password
+    });
+
+    this.generateConfirmationCode();
+  }
+
+
+  generateConfirmationCode() {
+    this.UserDetailsService.setConfirmationCode();
+  }
+  
 }

@@ -5,7 +5,7 @@
             <label>Confirm your email address</label>
             <p>
                 We sent a confirmation email to <br>
-                email&#64;email.com <br>
+                {{ userDetails.email }} <br>
                 check your email and enter the code below to continue
             </p>
             <div class="input-field">
@@ -18,7 +18,7 @@
                 <span *ngIf="timeLeft > 9">Available in 00:{{ timeLeft }}</span>
                 <span *ngIf="10 > timeLeft">Available in 00:0{{ timeLeft }}</span>
             </div>
-            <button>Continue</button>
+            <button (click)="checkCode()">Continue</button>
         </div>
     </div>
 </div>

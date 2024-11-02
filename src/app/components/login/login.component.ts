@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import Typed from 'typed.js';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { UserDetailsService } from '../../services/user-details.service';
 
 
 @Component({
@@ -36,4 +37,5 @@ export class LoginComponent {
       cursorChar: ''
     });
   }
+
 }

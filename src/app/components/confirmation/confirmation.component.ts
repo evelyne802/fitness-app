@@ -4,7 +4,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select'; 
 import { NgIf } from '@angular/common';
-
+import { UserDetailsService } from '../../services/user-details.service';
+import { userDetails } from '../../../types';
 
 
 @Component({
@@ -24,6 +25,13 @@ import { NgIf } from '@angular/common';
 })
 export class ConfirmationComponent {
 
+  constructor(private userDetailsService: UserDetailsService){
+    this.userDetailsService.getUserDetails.subscribe(userDetails => this.userDetails = userDetails);
+    this.userDetailsService.getConfirmationCode.subscribe(code => this.code = code);
+  }
+
+  userDetails: userDetails | any;
+  code: number | any;
   codeFormControl = new FormControl('');
   sendCodeClass = 'unavailable';
   timeLeft: number = 59;
@@ -50,6 +58,11 @@ export class ConfirmationComponent {
         }
 
       },1000)
+    }
+
+    checkCode(){
+      console.log(this.code);
+      console.log(this.codeFormControl.value);
     }
 
 }
