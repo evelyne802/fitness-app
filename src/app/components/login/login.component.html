@@ -21,7 +21,10 @@
                     <img (click)="changePasswordVisibility()" [src]="hidePassword ? hidePasswordPath : showPasswordPath" >
                 </mat-form-field>
             </div>
-            <button (click)="checkLogIn()" routerLinkActive="active">Log In</button>
+            <div>
+                <p class="error">{{ logInError }}</p>
+            </div>
+            <button (click)="logIn()" routerLinkActive="active">Log In</button>
             <label>Don't have an account?</label>
             <p>
                 Become the best you can be.

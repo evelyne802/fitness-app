@@ -6,6 +6,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import Typed from 'typed.js';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { UserDetailsService } from '../../services/user-details.service';
+import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +19,7 @@ import { UserDetailsService } from '../../services/user-details.service';
     ReactiveFormsModule,
     RouterLink,
     RouterLinkActive,
+    NgIf
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -24,15 +27,16 @@ import { UserDetailsService } from '../../services/user-details.service';
 
 export class LoginComponent {
 
-  emailFormControl = new FormControl('', [Validators.email, Validators.required ]);
+  emailFormControl = new FormControl('');
   passwordFormControl = new FormControl('');
   email: any;
   pswrdVisibilityIcon = ''
   hidePassword = true;
   hidePasswordPath = '../../../assets/images/eye-closed.png';
   showPasswordPath = '../../../assets/images/eye-open.png';
+  logInError = '';
 
-  constructor(private userDetailsService: UserDetailsService){}
+  constructor(private userDetailsService: UserDetailsService, private router: Router){}
 
   async ngOnInit(){
     const firstTyped = new Typed('#typed', {
@@ -49,16 +53,32 @@ export class LoginComponent {
     this.hidePassword = !this.hidePassword;
   }
 
-  async checkLogIn(){
-    let email = this.emailFormControl.value!;
-    console.log('does email exists', await this.checkIfEmailExists(email));
+  async logIn(){
+    this.logInError = await this.checkErrors();
+    if(this.logInError == ''){
+      this.router.navigate(['/home-page'], { skipLocationChange: true });
+    }
+    
   }
 
-  async checkIfEmailExists(email: string){
-    const existingEmails = await this.userDetailsService.getAllExistingEmails();
-    return existingEmails?.includes(email);
+  async checkErrors(){
+    const email = this.emailFormControl.value!;
+    const password = this.passwordFormControl.value!;
+
+    if(email == '' || password == '') return 'Fill out all fields to continue';
+    if(!this.userDetailsService.checkValidEmail(email)) return 'Invalid Email address';
+    if(!await this.checkUserLogin(email, password)) return 'Email or password are incorrect';
+
+    return '';
+  }
+
+  async checkUserLogin(email: string, password: string){
+    const userDetails = await this.userDetailsService.checkUserLogin(email, password);
+    return userDetails!.length > 0;
   }
 
 }
+
+
 
 

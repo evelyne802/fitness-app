@@ -7,7 +7,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UserDetailsService } from '../../services/user-details.service';
 
 
@@ -27,12 +27,17 @@ import { UserDetailsService } from '../../services/user-details.service';
 })
 export class SignupComponent {
 
-  constructor( private renderer: Renderer2, private UserDetailsService: UserDetailsService ) {}
+  constructor( private renderer: Renderer2, private userDetailsService: UserDetailsService, private router: Router ) {}
 
+  hidePassword = true;
+  hidePasswordPath = '../../../assets/images/eye-closed.png';
+  showPasswordPath = '../../../assets/images/eye-open.png';
   firstNameFormControl = new FormControl('');
   lastNameFormControl = new FormControl('');
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  emailFormControl = new FormControl('');
   passwordFormControl = new FormControl('');
+  chosenLevel = '';
+  signUpError = '';
 
   @ViewChild('novice') noviceButton!: ElementRef<HTMLInputElement>;
   @ViewChild('intermediate') intermediateButton!: ElementRef<HTMLInputElement>;
@@ -41,46 +46,69 @@ export class SignupComponent {
   ngOnInit() {
   }
 
+  changePasswordVisibility(){
+    this.hidePassword = !this.hidePassword;
+  }
+
   selectNovice(){
     this.renderer.addClass(this.noviceButton.nativeElement, 'active-circle');
     this.renderer.removeClass(this.intermediateButton.nativeElement, 'active-circle');
     this.renderer.removeClass(this.expertButton.nativeElement, 'active-circle');
+    this.chosenLevel = 'novice';
   }
 
   selectIntermediate(){
     this.renderer.addClass(this.intermediateButton.nativeElement, 'active-circle');
     this.renderer.removeClass(this.noviceButton.nativeElement, 'active-circle');
     this.renderer.removeClass(this.expertButton.nativeElement, 'active-circle');
+    this.chosenLevel = 'intermediate';
   }
 
   selectExpert(){
     this.renderer.addClass(this.expertButton.nativeElement, 'active-circle');
     this.renderer.removeClass(this.noviceButton.nativeElement, 'active-circle');
     this.renderer.removeClass(this.intermediateButton.nativeElement, 'active-circle');
-  }
-
-  updateUserDetails(){
-    let firstName = this.firstNameFormControl.value == null ? '' : this.firstNameFormControl.value;
-    let lastName = this.lastNameFormControl.value == null ? '' : this.lastNameFormControl.value;
-    let email = this.emailFormControl.value == null ? '' : this.emailFormControl.value;
-    let password = this.passwordFormControl.value == null ? '' : this.passwordFormControl.value;
-
-    this.UserDetailsService.setUserDetails({
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password
-    });
-
-    this.generateConfirmationCode();
+    this.chosenLevel = 'expert';
   }
 
   generateConfirmationCode() {
-    this.UserDetailsService.setConfirmationCode();
+    this.userDetailsService.setConfirmationCode();
   }
 
-  // TODO : verify email address ( correct format + check if there isn't an account with the same email ) 
+  // TODO : verify email address ( correct format + check if there isn't an account with the same email )
+  async signUp(){
+    const email = this.emailFormControl.value!;
+    const password = this.passwordFormControl.value!;
+    const firstName = this.firstNameFormControl.value!;
+    const lastName = this.lastNameFormControl.value!;
 
-  // TODO : verify password
+    this.signUpError = await this.checkErrors(email, password, firstName, lastName);
+    
+    if(this.signUpError == ''){
+      this.generateConfirmationCode();
+      this.userDetailsService.addUser({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+        level: this.chosenLevel
+      })
+      this.router.navigate(['/confirmation'], { skipLocationChange: true });
+    }
+  } 
+
+  async checkErrors(email: string, password: string, firstName: string, lastName: string){
+    if(email == '' || password == '' || firstName == '' || lastName == '') return 'Fill out all fields to continue';
+    if(!this.userDetailsService.checkValidEmail(email)) return 'Invalid Email address';
+    if(await this.emailExists(email)) return 'Account already exists for given email address';
+    if(this.chosenLevel == '') return 'Please choose your level to continue';
+
+    return '';
+  }
+
+  async emailExists(email: string){
+    const existingEmails = await this.userDetailsService.doesEmailExist(email);
+    return existingEmails!.length > 0;
+  }
   
 }

@@ -20,8 +20,12 @@
             
                 <mat-form-field>
                     <mat-label>Password</mat-label>
-                    <input matInput [formControl]="passwordFormControl">
+                    <input matInput [formControl]="passwordFormControl" [type]="hidePassword ? 'password' : 'text'">
+                    <img (click)="changePasswordVisibility()" [src]="hidePassword ? hidePasswordPath : showPasswordPath" >
                 </mat-form-field>
+                <div>
+                    <p class="error">{{ signUpError }}</p>
+                </div>
             </div>
             <div class="level-selection">
                 <div class="level-title">Choose your level</div>
@@ -44,7 +48,7 @@
                     <label>Expert</label>
                 </div>
             </div>
-           <button routerLink='/confirmation' routerLinkActive="active" (click)="updateUserDetails()">Get Started</button>
+           <button (click)="signUp()">Get Started</button>
         </div>
     </div>
 </div>

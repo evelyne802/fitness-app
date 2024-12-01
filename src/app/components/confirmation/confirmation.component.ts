@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select'; 
 import { NgIf } from '@angular/common';
 import { UserDetailsService } from '../../services/user-details.service';
-import { userDetails } from '../../../types';
+import { UserDetails } from '../../../types';
 
 
 @Component({
@@ -25,13 +25,11 @@ import { userDetails } from '../../../types';
 })
 export class ConfirmationComponent {
 
-  constructor(private userDetailsService: UserDetailsService){
-    this.userDetailsService.getUserDetails.subscribe(userDetails => this.userDetails = userDetails);
-    this.userDetailsService.getConfirmationCode.subscribe(code => this.code = code);
-  }
+  userDetails: UserDetails = this.userDetailsService.getCurrentUser();
+  code: string = this.userDetailsService.getConfirmationCode();
 
-  userDetails: userDetails | any;
-  code: number | any;
+  constructor(private userDetailsService: UserDetailsService){}
+
   codeFormControl = new FormControl('');
   sendCodeClass = 'unavailable';
   timeLeft: number = 59;
