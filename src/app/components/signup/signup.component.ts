@@ -75,9 +75,12 @@ export class SignupComponent {
     this.generateConfirmationCode();
   }
 
-
   generateConfirmationCode() {
     this.UserDetailsService.setConfirmationCode();
   }
+
+  // TODO : verify email address ( correct format + check if there isn't an account with the same email ) 
+
+  // TODO : verify password
   
 }

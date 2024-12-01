@@ -2,6 +2,7 @@
     <div class="content-wrapper container">
        <div class="text-container">
             <div class="logo">GYMPAL</div>
+            <div class="logo">{{ email }}</div>
             <div class="subtext">
                 <span id="typed" class="subtext"><!-- content will be typed here --></span>
             </div>
@@ -11,15 +12,16 @@
             <div class="form">
                 <mat-form-field>
                     <mat-label>Email</mat-label>
-                    <input matInput [formControl]="emailFormControl">
+                    <input matInput [formControl]="emailFormControl" >
                 </mat-form-field>
             
                 <mat-form-field>
                     <mat-label>Password</mat-label>
-                    <input matInput [formControl]="passwordFormControl">
+                    <input matInput [formControl]="passwordFormControl" [type]="hidePassword ? 'password' : 'text'">
+                    <img (click)="changePasswordVisibility()" [src]="hidePassword ? hidePasswordPath : showPasswordPath" >
                 </mat-form-field>
             </div>
-            <button routerLink='/confirmation' routerLinkActive="active">Log In</button>
+            <button (click)="checkLogIn()" routerLinkActive="active">Log In</button>
             <label>Don't have an account?</label>
             <p>
                 Become the best you can be.

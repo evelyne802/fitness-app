@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select'; 
 import { MatInputModule } from '@angular/material/input';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import Typed from 'typed.js';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { UserDetailsService } from '../../services/user-details.service';
-
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ import { UserDetailsService } from '../../services/user-details.service';
     FormsModule,
     ReactiveFormsModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -24,10 +24,17 @@ import { UserDetailsService } from '../../services/user-details.service';
 
 export class LoginComponent {
 
-  emailFormControl = new FormControl('');
+  emailFormControl = new FormControl('', [Validators.email, Validators.required ]);
   passwordFormControl = new FormControl('');
+  email: any;
+  pswrdVisibilityIcon = ''
+  hidePassword = true;
+  hidePasswordPath = '../../../assets/images/eye-closed.png';
+  showPasswordPath = '../../../assets/images/eye-open.png';
 
-  ngOnInit(){
+  constructor(private userDetailsService: UserDetailsService){}
+
+  async ngOnInit(){
     const firstTyped = new Typed('#typed', {
       strings: ['Your Favorite Fitness App.', 'Your Best Fitness App.'],
       typeSpeed: 80,
@@ -38,4 +45,20 @@ export class LoginComponent {
     });
   }
 
+  changePasswordVisibility(){
+    this.hidePassword = !this.hidePassword;
+  }
+
+  async checkLogIn(){
+    let email = this.emailFormControl.value!;
+    console.log('does email exists', await this.checkIfEmailExists(email));
+  }
+
+  async checkIfEmailExists(email: string){
+    const existingEmails = await this.userDetailsService.getAllExistingEmails();
+    return existingEmails?.includes(email);
+  }
+
 }
+
+
