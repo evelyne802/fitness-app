@@ -86,13 +86,13 @@ export class SignupComponent {
     
     if(this.signUpError == ''){
       this.generateConfirmationCode();
-      this.userDetailsService.addUser({
+      this.userDetailsService.setTempUser({
         firstName: firstName,
         lastName: lastName,
         email: email,
         password: password,
         level: this.chosenLevel
-      })
+      });
       this.router.navigate(['/confirmation'], { skipLocationChange: true });
     }
   } 

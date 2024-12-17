@@ -47,7 +47,6 @@
 .subtext {
     position: relative;
     font-family: "Montserrat", sans-serif;
-    margin-top: 20px;
     font-size: 2rem;
     font-weight: 600;
     color: rgb(53 52 52);
@@ -215,11 +214,10 @@ p {
     }
 
     .logo {
-        font-size: 4rem;
+        font-size: 4.5rem;
     }
 
     .subtext {
         font-size: 1.25rem;
-        margin-top: 30px;
     }
 }

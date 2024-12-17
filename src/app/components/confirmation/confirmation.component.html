@@ -5,13 +5,16 @@
             <label>Confirm your email address</label>
             <p>
                 We sent a confirmation email to <br>
-                <b>{{ userDetails.email }}</b> <br>
+                <b>{{ email }}</b> <br>
                 check your email and enter the code below to continue
             </p>
             <div class="input-field">
                 <mat-form-field>
                     <input matInput [formControl]="codeFormControl">
                 </mat-form-field>
+            </div>
+            <div>
+                <p class="error">{{ logInError }}</p>
             </div>
             <div class="send-code">
                 <a [class]="sendCodeClass" (click)="startTimer()">Send me another code</a><br>

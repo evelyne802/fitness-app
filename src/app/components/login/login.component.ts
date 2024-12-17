@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select'; 
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import Typed from 'typed.js';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { UserDetailsService } from '../../services/user-details.service';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
+import Typed from 'typed.js';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +28,6 @@ export class LoginComponent {
 
   emailFormControl = new FormControl('');
   passwordFormControl = new FormControl('');
-  email: any;
   pswrdVisibilityIcon = ''
   hidePassword = true;
   hidePasswordPath = '../../../assets/images/eye-closed.png';
@@ -56,9 +54,9 @@ export class LoginComponent {
   async logIn(){
     this.logInError = await this.checkErrors();
     if(this.logInError == ''){
+      console.log(this.emailFormControl.value!);
       this.router.navigate(['/home-page'], { skipLocationChange: true });
     }
-    
   }
 
   async checkErrors(){

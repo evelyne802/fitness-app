@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { UserDetails, UserSignUpDetails } from '../../types';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,44 +10,61 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 export class UserDetailsService {
   private supabase: SupabaseClient
-  private currentUser: UserDetails = { firstName: '', lastName: '', email: '', level: '' };
-  private confirmationCode = '';
   private supabaseUrl = 'https://sexgododdphtwnzpqtwn.supabase.co'
   private supabaseApiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNleGdvZG9kZHBodHduenBxdHduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI2NDg4MDIsImV4cCI6MjA0ODIyNDgwMn0.GrE6mf8oQBhVb6U8Imw_iCm8K6DDE864LdboVuYjJyo'
-
+  confirmationCode = '';
+  currentUser: UserDetails = { firstName: '', lastName: '', email: '', level: '' };
+  tempUser: UserSignUpDetails = { firstName: '', lastName: '', email: '', password: '', level: '' };
+  saltRounds = 10;
+  hashedPassword = '';
 
   constructor() {
     this.supabase = createClient(this.supabaseUrl, this.supabaseApiKey);
   }
 
-  async addUser(userDetails: UserSignUpDetails){
-    this.currentUser = { 
-      firstName: userDetails.firstName,
-      lastName: userDetails.lastName,
-      email: userDetails.email,
-      level: userDetails.level
-    };
-
-    console.log(userDetails);
-
-    const { data, error } = await this.supabase
-    .from('users')
-    .insert({
-      first_name: userDetails.firstName,
-      last_name: userDetails.lastName,
-      email: userDetails.email,
-      password: userDetails.password,
-      level: userDetails.level
-    })
-    .select();
-    console.log(data);
-
-    if(error){
-      console.error(error.stack);
-    }
-   
+  
+  async addUser(){
+    
+    bcrypt.hash(this.tempUser.password, this.saltRounds, async (err, hash) => {
+      const { data, error } = await this.supabase
+      .from('users')
+      .insert({
+        first_name: this.tempUser.firstName,
+        last_name: this.tempUser.lastName,
+        email: this.tempUser.email,
+        password: hash,
+        level: this.tempUser.level
+      })
+      .select();
+      if(error){
+        console.log("Error inserting user: ", error);
+      }
+      if(err){
+        console.log("Error hashing password: ", err);
+      }
+    });
   }
 
+
+  // when signing up - users are temporary, until they finish signing up
+  getTempUserEmail(){
+    return this.tempUser.email;
+  }
+
+  setTempUser(user: UserSignUpDetails){
+    this.tempUser = user;
+  }
+
+  // when users finish with signing up, they are redirected to the website and become "current user"
+  async setTempUserToCurrent(){
+    this.currentUser = {
+      firstName: this.tempUser.firstName,
+      lastName: this.tempUser.lastName,
+      email: this.tempUser.email,
+      level: this.tempUser.level
+    }
+  }
+ 
   getCurrentUser(){
     return this.currentUser;
   }
@@ -80,9 +98,17 @@ export class UserDetailsService {
       .eq('password', password);
       
       if(error){
-        console.error(error);4
+        console.error(error);
       }
-      console.log(data);
+      // If user exists, set details for the current user
+      if(data !== null && data.length>0){
+        this.currentUser = {
+          firstName: data[0].first_name,
+          lastName: data[0].last_name,
+          email: data[0].email,
+          level: data[0].level
+        }
+      }
       return data;
   }
 

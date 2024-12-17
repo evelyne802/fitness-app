@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select'; 
 import { NgIf } from '@angular/common';
@@ -25,18 +25,20 @@ import { UserDetails } from '../../../types';
 })
 export class ConfirmationComponent {
 
-  userDetails: UserDetails = this.userDetailsService.getCurrentUser();
+  email: string = this.userDetailsService.getTempUserEmail();
   code: string = this.userDetailsService.getConfirmationCode();
 
-  constructor(private userDetailsService: UserDetailsService){}
+  constructor(private userDetailsService: UserDetailsService, private router: Router){}
 
   codeFormControl = new FormControl('');
   sendCodeClass = 'unavailable';
   timeLeft: number = 59;
   interval: any;
+  logInError = '';
 
   ngOnInit(){
     this.startTimer();
+    alert('You can insert 0000 as your code');
   }
 
   startTimer() {
@@ -59,8 +61,13 @@ export class ConfirmationComponent {
     }
 
     checkCode(){
-      console.log(this.code);
-      console.log(this.codeFormControl.value);
+      if(this.codeFormControl.value === this.code || this.codeFormControl.value === '0000'){
+        this.userDetailsService.addUser();
+        this.userDetailsService.setTempUserToCurrent();
+        this.router.navigate(['/home-page'], { skipLocationChange: true });
+      } else {
+        this.logInError = `Wrong code entered`;
+      }
     }
 
 }
