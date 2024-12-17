@@ -17,6 +17,7 @@ export class UserDetailsService {
   tempUser: UserSignUpDetails = { firstName: '', lastName: '', email: '', password: '', level: '' };
   saltRounds = 10;
   hashedPassword = '';
+  correctLogIn = false;
 
   constructor() {
     this.supabase = createClient(this.supabaseUrl, this.supabaseApiKey);
@@ -94,22 +95,31 @@ export class UserDetailsService {
       const { data , error } = await this.supabase
       .from("users")
       .select()
-      .eq('email', email)
-      .eq('password', password);
-      
+      .eq('email', email);
       if(error){
-        console.error(error);
+        console.error("Error selecting from db: ", error);
       }
-      // If user exists, set details for the current user
+
+      // If user with given email exists
       if(data !== null && data.length>0){
-        this.currentUser = {
-          firstName: data[0].first_name,
-          lastName: data[0].last_name,
-          email: data[0].email,
-          level: data[0].level
-        }
+        const storedHashedPassword = data[0].password; 
+        bcrypt.compare(password, storedHashedPassword, (err, result) => {
+          if (err) {
+            console.error("Error comparing passwords:", err);
+          }
+          if (result) {  // is passwords match, proceed to set user as current user
+            console.log('passwords match!');
+            this.currentUser = {
+              firstName: data[0].first_name,
+              lastName: data[0].last_name,
+              email: data[0].email,
+              level: data[0].level
+            }
+          }
+        });
+        return true;
       }
-      return data;
+      return false;
   }
 
   checkValidEmail(email: string){

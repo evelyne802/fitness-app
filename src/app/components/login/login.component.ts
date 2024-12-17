@@ -72,7 +72,8 @@ export class LoginComponent {
 
   async checkUserLogin(email: string, password: string){
     const userDetails = await this.userDetailsService.checkUserLogin(email, password);
-    return userDetails!.length > 0;
+    console.log(userDetails);
+    return userDetails;
   }
 
 }
