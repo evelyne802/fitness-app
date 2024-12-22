@@ -1,9 +1,11 @@
 import express from 'express'
 import cors from 'cors';
 import sgMail from '@sendgrid/mail';
+import env from "dotenv";
 
 const app = express();
 const port = 3000;
+env.config();
 
 app.use(cors({
     origin: "http://localhost:4200",
@@ -17,7 +19,7 @@ app.get('/send-email/:email/:code', (req, res) => {
     const response = `Sending email to ${email}`;
     console.log('request made it to server!');
     
-    sgMail.setApiKey('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');
+    sgMail.setApiKey(process.env.SENDGRID_API);
     const msg = {
       to: email, 
       from: 'gympal.fitness.app@gmail.com',
