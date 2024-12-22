@@ -6,6 +6,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { NgIf } from '@angular/common';
 import { UserDetailsService } from '../../services/user-details.service';
 import { UserDetails } from '../../../types';
+import { EmailService } from '../../services/email.service';
 
 
 @Component({
@@ -26,9 +27,11 @@ import { UserDetails } from '../../../types';
 export class ConfirmationComponent {
 
   email: string = this.userDetailsService.getTempUserEmail();
-  code: string = this.userDetailsService.getConfirmationCode();
+  code: string = this.emailService.getConfirmationCode();
 
-  constructor(private userDetailsService: UserDetailsService, private router: Router){}
+  constructor( private userDetailsService: UserDetailsService, 
+               private router: Router, 
+               private emailService: EmailService){}
 
   codeFormControl = new FormControl('');
   sendCodeClass = 'unavailable';
@@ -38,6 +41,7 @@ export class ConfirmationComponent {
 
   ngOnInit(){
     this.startTimer();
+    this.emailService.sendEmail(this.email, this.code);
     alert('You can insert 0000 as your code');
   }
 

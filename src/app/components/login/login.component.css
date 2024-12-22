@@ -69,6 +69,7 @@
     height: 360px;
     padding: 40px;
     align-items: center;
+    border-radius: 15px;
 }
 
 .form {

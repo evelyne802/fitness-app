@@ -70,15 +70,6 @@ export class UserDetailsService {
     return this.currentUser;
   }
 
-  setConfirmationCode(){
-    let code = Math.round(Math.random() * (9999 - 1000) + 1000).toString();  // Generates 4-digit code
-    this.confirmationCode = code;
-  }
-
-  getConfirmationCode(){
-    return this.confirmationCode;
-  }
-
   async doesEmailExist(email: string){
     const { data , error } = await this.supabase
     .from("users")

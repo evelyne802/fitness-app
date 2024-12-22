@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UserDetailsService } from '../../services/user-details.service';
+import { EmailService } from '../../services/email.service';
 
 
 @Component({
@@ -27,7 +28,10 @@ import { UserDetailsService } from '../../services/user-details.service';
 })
 export class SignupComponent {
 
-  constructor( private renderer: Renderer2, private userDetailsService: UserDetailsService, private router: Router ) {}
+  constructor( private renderer: Renderer2, 
+               private userDetailsService: UserDetailsService, 
+               private router: Router,
+               private emailService: EmailService ) {}
 
   hidePassword = true;
   hidePasswordPath = '../../../assets/images/eye-closed.png';
@@ -72,7 +76,7 @@ export class SignupComponent {
   }
 
   generateConfirmationCode() {
-    this.userDetailsService.setConfirmationCode();
+    this.emailService.setConfirmationCode();
   }
 
   // TODO : verify email address ( correct format + check if there isn't an account with the same email )

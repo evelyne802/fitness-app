@@ -48,6 +48,7 @@
     align-items: center;
     color: #b9b9b9;
     padding: 45px;
+    border-radius: 15px;
 }
 
 .confirm-container label {
