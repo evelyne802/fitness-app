@@ -12,7 +12,7 @@ export class EmailService {
   constructor(private http: HttpClient) { }
 
   sendEmail(email: string, code: string){
-    this.http.get(`http://localhost:3000/send-email/${email}/${code}`).subscribe(buffer => {
+    this.http.get(`https://gympal-app-b9ee398c6511.herokuapp.com/send-email/${email}/${code}`).subscribe(buffer => {
   });
   }
 

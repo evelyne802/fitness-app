@@ -1,6 +1,6 @@
 {
     "/": {
-        "target": "http://localhost:3000",
+        "target": "https://gympal-app-b9ee398c6511.herokuapp.com/",
         "secure": false
     }
 }
