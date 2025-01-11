@@ -242,6 +242,7 @@ button:hover {
     
     .content-wrapper {
         justify-content: center;
+        height: 65vh;
     }
 
     .signup-container {
