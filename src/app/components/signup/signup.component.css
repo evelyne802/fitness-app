@@ -179,10 +179,6 @@ button:hover {
 
 @media screen and (max-width: 900px) {
 
-    .content-wrapper {
-        height: 80vh;
-    }
-
     .logo {
         margin: 20px 30px;
     }
