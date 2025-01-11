@@ -167,3 +167,13 @@ button:hover {
         font-size: 1rem;
     }
 }
+
+@media screen and (max-width: 400px) {
+    .confirm-container label {
+        font-size: 1.05rem;
+    }
+
+    .confirm-container p {
+        font-size: 1rem;
+    }
+}

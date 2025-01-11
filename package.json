@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "concurrently \"npm:start:server\" \"npm:start:ui\"",
     "start:server": "nodemon ./src/backend/server.js",
-    "start:ui": "ng serve",
+    "start:ui": "ng serve --proxy-config=./src/proxy.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

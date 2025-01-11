@@ -58,7 +58,7 @@
     margin-bottom: 15px;
     font-size: 0.9rem;
     width: 40%;
-    height: 275px;
+    /* height: 275px; */
     padding: 10px 10px 0px 20px;
 }
 
@@ -86,7 +86,7 @@
     margin-top: -50px;
 }
 
-.level-title {
+.levels-title {
     position: relative;
     font-family: "Montserrat", sans-serif;
     font-size: 1.6rem;
@@ -213,9 +213,14 @@ button:hover {
         width: 75vw;
     }
 
-    .level-title {
+    .levels-title {
         font-size: 1.5rem;
-        margin: 25px 30px 15px 30px;
+        margin: 0px 0px 5px 0px;
+    }
+
+    .level-selection {
+        margin-top: 0;
+        height: 145px;
     }
 
     .circle {
@@ -224,7 +229,16 @@ button:hover {
     }
 
     button {
-        margin-top: 45px;
+        margin: 20px 0;
+    }
+
+    .form {
+        padding: 10px 10px 0px 10px;
+    }
+
+    ::ng-deep .mdc-text-field {
+        font-size: 14px !important;
+        padding: 10px 0 5px 0px !important;
     }
 }
 
@@ -239,9 +253,9 @@ button:hover {
         padding: 15px;
     }
 
-    .level-title {
+    .levels-title {
         font-size: 1.4rem;
-        margin: 25px 15px 15px 15px;
+        margin: 0;
     }
 
     .circle {
@@ -260,15 +274,41 @@ button:hover {
 
     button {
         width: 80%;
-        margin: 20px 0;
     }
 }
 
-@media screen and (max-width: 400px) { 
-    /* .circle {
-        height: 50px;
-        width: 50px;
-        margin: 0 5px;
-    } */
+@media screen and (max-width: 400px){
+
 }
 
+@media screen and (max-width: 360px) { 
+    .circle {
+        height: 60px;
+        width: 60px;
+        margin: 0 10px;
+    }
+
+    .levels-title {
+        font-size: 1.1rem;
+    }
+
+    .level img{
+        height: 35px;
+    }
+
+    button {
+        margin: 10px 0;
+    }
+
+    ::ng-deep .mdc-text-field {
+        font-size: 13px !important;
+    }
+}
+
+@media screen and (max-width: 345px) { 
+    .circle {
+        height: 55px;
+        width: 55px;
+        margin: 0 8px;
+    }
+}

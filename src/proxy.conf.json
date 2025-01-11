@@ -1,6 +1,7 @@
 {
-    "/": {
+   "/send-email/*": {
         "target": "https://gympal-app-b9ee398c6511.herokuapp.com/",
-        "secure": false
+        "secure": false,
+        "changeOrigin": true
     }
 }
