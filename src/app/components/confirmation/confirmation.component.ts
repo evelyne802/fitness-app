@@ -5,7 +5,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select'; 
 import { NgIf } from '@angular/common';
 import { UserDetailsService } from '../../services/user-details.service';
-import { UserDetails } from '../../../types';
 import { EmailService } from '../../services/email.service';
 
 
@@ -68,7 +67,7 @@ export class ConfirmationComponent {
       if(this.codeFormControl.value === this.code || this.codeFormControl.value === '0000'){
         this.userDetailsService.addUser();
         this.userDetailsService.setTempUserToCurrent();
-        this.router.navigate(['/home-page'], { skipLocationChange: true });
+        this.router.navigate(['/pricing'], { skipLocationChange: true });
       } else {
         this.logInError = `Wrong code entered`;
       }

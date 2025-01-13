@@ -55,7 +55,7 @@ export class LoginComponent {
     this.logInError = await this.checkErrors();
     if(this.logInError == ''){
       console.log(this.emailFormControl.value!);
-      this.router.navigate(['/home-page'], { skipLocationChange: true });
+      this.router.navigate(['/pricing'], { skipLocationChange: true });
     }
   }
 

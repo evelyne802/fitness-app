@@ -1,0 +1,108 @@
+.background {
+    height: 100%;
+    min-height: max-content;
+    width: 100%;
+    position: absolute;
+    background-size: cover;
+    font-family: "Montserrat", sans-serif;
+    background-position: 50% 50%;
+    left: 0;
+    top: 0;
+}
+
+.background::before {    
+    content: "";
+    background-image: url("../../../assets/images/pricing-bg.png");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.7;
+}
+
+.logo {
+    position: relative;
+    font-family: "Montserrat", sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: black;
+    margin: 25px 30px;
+}
+
+.plans {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+}
+
+.plan{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #383838dd;
+    width: 260px;
+    height: 320px;
+    padding: 25px;
+    margin: 20px;
+    align-items: start;
+    justify-content: space-between;
+    border-radius: 15px;
+    color: #cecece;
+}
+
+.plan-title {
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    font-size: 1.3rem;
+}
+
+.plan ul {
+    font-size: 0.9rem;
+    color: #a3a3a3;
+    list-style: none;
+    text-align: left;
+    margin: 10px;
+    padding: 0;
+}
+
+.plan ul li:before {
+    content: '✓';
+    margin-right: 8px;
+    font-size: 1rem;
+}
+
+.space {
+    margin-left: 21px;
+}
+
+.price {
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+.month {
+    font-size: 0.8rem;
+    color: #a3a3a3;
+}
+
+button {
+    width: 100%;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    font-weight: 500;
+    color: rgb(53 52 52);
+    background-color: #deccbd;
+    border: none;
+    cursor: pointer;
+    margin: 5px 0;
+    align-self: flex-end;
+}
+
+button:hover {
+    background-color: #c3b2a5;
+}
