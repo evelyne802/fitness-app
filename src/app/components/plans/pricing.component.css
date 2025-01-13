@@ -36,9 +36,10 @@
     align-items: center;
     justify-content: center;
     height: 500px;
+    margin-bottom: 10px;
 }
 
-.plan{
+.plan {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -109,7 +110,7 @@ button:hover {
 @media screen and (max-width: 900px) {
     
     .logo {
-        margin: 25px 30px 0px 30px;
+        margin: 15px 30px 0px 30px;
     }
     
     .plans {
@@ -121,7 +122,6 @@ button:hover {
         width: 330px;
         height: 190px;
         padding: 20px;
-        margin: 0 0 15px 0;
         align-items: start;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -158,17 +158,23 @@ button:hover {
 }
 
 @media screen and (max-width: 600px) {
-    
+
     .logo {
-        margin: 15px 30px 0px 30px;
+        font-size: 2.6rem;
     }
 
-    .price{
+    .price {
         font-size: 1.5rem;
     }
+
 }
 
 @media screen and (max-width: 400px) {
+
+    .logo {
+        margin: 15px 30px;
+        font-size: 2.3rem;
+    }
 
     .plan {
         width: 330px;
