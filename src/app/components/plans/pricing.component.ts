@@ -9,5 +9,7 @@ import { Component } from '@angular/core';
 })
 
 export class PricingComponent {
-
+  ngOnInit(){
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
 }

@@ -48,6 +48,7 @@ export class SignupComponent {
   @ViewChild('expert') expertButton!: ElementRef<HTMLInputElement>;
 
   ngOnInit() {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
   }
 
   changePasswordVisibility(){

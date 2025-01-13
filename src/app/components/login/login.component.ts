@@ -37,6 +37,7 @@ export class LoginComponent {
   constructor(private userDetailsService: UserDetailsService, private router: Router){}
 
   async ngOnInit(){
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     const firstTyped = new Typed('#typed', {
       strings: ['Your Favorite Fitness App.', 'Your Best Fitness App.'],
       typeSpeed: 80,
