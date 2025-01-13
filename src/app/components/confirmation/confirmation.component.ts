@@ -41,7 +41,7 @@ export class ConfirmationComponent {
   ngOnInit(){
     this.startTimer();
     this.emailService.sendEmail(this.email, this.code);
-    alert("You can insert 0000 as your code if you didn't get an email");
+    //alert("You can insert 0000 as your code if you didn't get an email");
   }
 
   startTimer() {
