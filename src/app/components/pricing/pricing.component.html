@@ -9,7 +9,7 @@
                 <li>Daily Reminders</li>
             </ul>
             <label class="price">Free</label>
-            <button>Get started now</button>
+            <button (click)="redirectHome()">Get started now</button>
         </div>
         <div class="plan">
             <label class="plan-title">Pro</label>
@@ -19,7 +19,7 @@
                 <li>Community Support</li>
             </ul>
             <label class="price">$4.99 <span class="month">/ month</span></label>
-            <button>Choose plan</button>
+            <button (click)="redirectBilling()">Choose plan</button>
         </div>
         <div class="plan">
             <label class="plan-title">Premium</label>
@@ -29,7 +29,7 @@
                 <li>Consultations with our <span class="space">fitness experts</span></li>
             </ul>
             <label class="price">$19.99 <span class="month">/ month</span></label>
-            <button>Subscribe</button>
+            <button (click)="redirectBilling()">Subscribe</button>
         </div>
     </div> 
 </div>

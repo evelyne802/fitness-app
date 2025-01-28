@@ -26,7 +26,7 @@ import { EmailService } from '../../services/email.service';
 export class ConfirmationComponent {
 
   email: string = this.userDetailsService.getTempUserEmail();
-  code: string = this.emailService.getConfirmationCode();
+  code: string = '';
 
   constructor( private userDetailsService: UserDetailsService, 
                private router: Router, 
@@ -41,13 +41,14 @@ export class ConfirmationComponent {
   ngOnInit(){
     document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.startTimer();
-    this.emailService.sendEmail(this.email, this.code);
     //alert("You can insert 0000 as your code if you didn't get an email");
   }
 
   startTimer() {
       this.timeLeft = 59;
       this.sendCodeClass = 'unavailable';
+      this.code = this.emailService.getConfirmationCode();
+      this.emailService.sendEmail(this.email, this.code);
 
       this.interval = setInterval(() => {
         if(this.timeLeft == 0){
@@ -68,7 +69,7 @@ export class ConfirmationComponent {
       if(this.codeFormControl.value === this.code || this.codeFormControl.value === '0000'){
         this.userDetailsService.addUser();
         this.userDetailsService.setTempUserToCurrent();
-        this.router.navigate(['/pricing'], { skipLocationChange: true });
+        this.router.navigateByUrl('/pricing');
       } else {
         this.logInError = `Wrong code entered`;
       }

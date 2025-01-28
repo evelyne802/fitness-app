@@ -1,0 +1,30 @@
+.background {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-size: cover;
+    /* background-position: 30% 70%; */
+    left: 0;
+    top: 0;
+}
+
+.background::before {    
+    content: "";
+    background-image: url("../../../assets/images/billing-bg.png");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.7;
+}
+
+.logo {
+    position: relative;
+    font-family: "Montserrat", sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: black;
+    margin: 25px 30px;
+}

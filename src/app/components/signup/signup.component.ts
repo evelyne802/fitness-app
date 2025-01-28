@@ -76,10 +76,6 @@ export class SignupComponent {
     this.chosenLevel = 'expert';
   }
 
-  generateConfirmationCode() {
-    this.emailService.setConfirmationCode();
-  }
-
   // TODO : verify email address ( correct format + check if there isn't an account with the same email )
   async signUp(){
     const email = this.emailFormControl.value!;
@@ -90,7 +86,6 @@ export class SignupComponent {
     this.signUpError = await this.checkErrors(email, password, firstName, lastName);
     
     if(this.signUpError == ''){
-      this.generateConfirmationCode();
       this.userDetailsService.setTempUser({
         firstName: firstName,
         lastName: lastName,
@@ -98,7 +93,7 @@ export class SignupComponent {
         password: password,
         level: this.chosenLevel
       });
-      this.router.navigate(['/confirmation'], { skipLocationChange: true });
+      this.router.navigateByUrl('/confirmation');
     }
   } 
 
